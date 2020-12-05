@@ -1,3 +1,5 @@
+use regex::Regex;
+
 pub fn part_2() {
     let passports = load_passports("./data/day_4.txt");
     let mut ct = 0;
@@ -6,6 +8,7 @@ pub fn part_2() {
             ct += 1;
         }
     }
+    println!("{} valid passports", ct);
 }
 
 fn load_passports(filename: &str) -> Vec<Passport> {
