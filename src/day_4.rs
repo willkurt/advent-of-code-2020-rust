@@ -1,21 +1,4 @@
-mod day_1;
-mod day_2;
-mod day_3;
-mod util;
-
-use regex::Regex;
-
-fn main() {
-    println!("Welcome Advent of Code 2020: Rust!");
-    println!("Day 1");
-    day_1::part_1();
-    day_1::part_2();
-    println!("Day 2");
-    day_2::part_1_and_2();
-    println!("Day 3");
-    day_3::part_1();
-    day_3::part_2();
-    println!("Day 4");
+pub fn part_2() {
     let passports = load_passports("./data/day_4.txt");
     let mut ct = 0;
     for passport in passports {
@@ -24,18 +7,6 @@ fn main() {
         }
     }
 }
-
-// Okay this time I want to be just a bit smarter
-// with my loading and parsing
-
-// we can still use read_lines because that is we can view this
-// as processing one line at a time
-
-// we an process those lines, create passports as we go,
-// the check the validity in the end.
-
-// Result type will alllow us to push off some clever validation
-// steps until later on!
 
 fn load_passports(filename: &str) -> Vec<Passport> {
     let mut passports: Vec<Passport> = Vec::new();
@@ -96,7 +67,7 @@ impl Passport {
             _ => false,
         }
     }
-    // want to go for O(N) parse time here
+
     fn parse_line(&mut self, line: String) {
         let mut buff = String::from("");
         let mut key = String::from("");
@@ -118,7 +89,7 @@ impl Passport {
             self.str_set(key, buff);
         }
     }
-    // set will handle any future parsing as well..
+
     fn str_set(&mut self, key: String, val: String) -> bool {
         match key.as_str() {
             "cid" => self.cid = Ok(val),
