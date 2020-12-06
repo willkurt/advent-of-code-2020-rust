@@ -2,6 +2,7 @@ mod day_1;
 mod day_2;
 mod day_3;
 mod day_4;
+mod day_5;
 mod util;
 
 fn main() {
@@ -17,4 +18,8 @@ fn main() {
     println!("Day 4");
     //part 1 just checks for the existence of each field.
     day_4::part_2();
+    //day 5
+    println!("Day 5");
+    day_5::part_1();
+    day_5::part_2();
 }
