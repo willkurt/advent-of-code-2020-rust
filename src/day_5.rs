@@ -1,26 +1,24 @@
 // max seat id 1023, meaning an array of size 1024
 pub fn part_2() {
     let mut seats: [bool; 1024] = [false; 1024];
-    let filename = "./data/day_5.txt";
-    // fill in the occupied seats
-    if let Ok(lines) = crate::util::read_lines(filename) {
-        for line in lines {
-            if let Ok(line) = line {
-                let line_v = line.chars().collect();
-                let row_seat = parse_ticket_code(&line_v, 0, 0, 0);
-                let seat_id = calc_seat_id(row_seat);
-                seats[seat_id as usize] = true;
+    let mut line_var = String::from("");
+    with_read_lines!(
+        "./data/day_5.txt",
+        line_var,
+        {
+            let line_v = line_var.chars().collect();
+            let row_seat = parse_ticket_code(&line_v, 0, 0, 0);
+            let seat_id = calc_seat_id(row_seat);
+            seats[seat_id as usize] = true;
+        },
+        {
+            for i in 40..(980) {
+                if !seats[i] {
+                    println!("{} is empty", i);
+                }
             }
         }
-    }
-    //now we just fine the missing one that isn't in the front or back
-    //uhh.. front and back are defined a bit weird but it's pretty clear
-    //where they are in when you run the
-    for i in 40..(980) {
-        if !seats[i] {
-            println!("{} is empty", i);
-        }
-    }
+    );
 }
 
 pub fn part_1() {
