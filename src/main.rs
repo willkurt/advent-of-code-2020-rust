@@ -4,9 +4,10 @@ mod macros;
 mod day_1;
 mod day_2;
 mod day_3;
-mod day_4;
+//mod day_4;
 mod day_5;
 mod day_6;
+mod day_7;
 mod util;
 
 fn main() {
@@ -19,7 +20,7 @@ fn main() {
     println!("Day 3");
     day_3::part_1();
     day_3::part_2();
-    println!("Day 4");
+    //  println!("Day 4");
     //part 1 just checks for the existence of each field.
     //    day_4::part_2();
     //day 5
@@ -29,4 +30,6 @@ fn main() {
     println!("Day 6");
     day_6::part_1();
     day_6::part_2();
+    println!("Day 7");
+    day_7::part_1();
 }
