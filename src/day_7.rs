@@ -1,6 +1,63 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 
+// this is much easier than the first part
+// because we only see each parent once
+// parsing the file.
+pub fn part_2() {
+    let mut line_var = String::from("");
+    let mut graph: HashMap<String, HoldNode> = HashMap::new();
+    with_read_lines!(
+        "./data/day_7.txt",
+        line_var,
+        {
+            let ruleple = parse_rule(line_var);
+            let parent = ruleple.parent;
+            match graph.get(&parent) {
+                Some(hold_node) => {
+                    println!("I didn't think I'd get back to {}", parent);
+                }
+                _ => {
+                    let mut children: HashMap<String, usize> = HashMap::new();
+                    for child in &ruleple.children {
+                        children.insert(child.1.to_string(), child.0.clone());
+                    }
+                    graph.insert(
+                        String::from(&parent),
+                        HoldNode {
+                            id: String::from(&parent),
+                            children: children,
+                        },
+                    );
+                }
+            }
+        },
+        {
+            let top_bag = String::from("shiny gold");
+            let count = total_bags(top_bag, &graph);
+            println!("{} bags!", count);
+        }
+    );
+}
+
+fn total_bags(bag: String, graph: &HashMap<String, HoldNode>) -> usize {
+    let mut total = 0;
+    if let Some(next_node) = graph.get(&bag) {
+        if next_node.children.is_empty() {
+            total = 0;
+        } else {
+            for (child, required) in &next_node.children {
+                total += (required * total_bags(child.to_string(), graph));
+                total += required;
+            }
+        }
+    } else {
+        println!("{} not found, that's bad news", bag);
+    }
+
+    total
+}
+
 pub fn part_1() {
     let mut line_var = String::from("");
     let mut graph: HashMap<String, BagNode> = HashMap::new();
@@ -99,4 +156,9 @@ struct BagNode {
     id: String,
     required: Vec<usize>,
     parent: Vec<String>, //torn about this representation but ids should work
+}
+//poor naming with this, but this is for parent -> children relationships
+struct HoldNode {
+    id: String,
+    children: HashMap<String, usize>,
 }

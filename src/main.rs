@@ -32,4 +32,5 @@ fn main() {
     day_6::part_2();
     println!("Day 7");
     day_7::part_1();
+    day_7::part_2();
 }
