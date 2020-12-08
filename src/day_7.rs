@@ -121,7 +121,7 @@ pub fn part_1() {
                         }
                     }
                 } else {
-                    // println!("{} not found, probabily the root", queue[0]);
+                    // println!("{} not found", queue[0]);
                 }
                 queue.remove(0);
             }

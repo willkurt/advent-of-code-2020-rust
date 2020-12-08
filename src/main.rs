@@ -8,6 +8,7 @@ mod day_3;
 mod day_5;
 mod day_6;
 mod day_7;
+mod day_8;
 mod util;
 
 fn main() {
@@ -33,4 +34,7 @@ fn main() {
     println!("Day 7");
     day_7::part_1();
     day_7::part_2();
+    println!("Day 8");
+    day_8::part_1();
+    day_8::part_2();
 }
