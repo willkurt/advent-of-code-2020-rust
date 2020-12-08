@@ -47,7 +47,7 @@ fn total_bags(bag: String, graph: &HashMap<String, HoldNode>) -> usize {
             total = 0;
         } else {
             for (child, required) in &next_node.children {
-                total += (required * total_bags(child.to_string(), graph));
+                total += required * total_bags(child.to_string(), graph);
                 total += required;
             }
         }
@@ -108,7 +108,7 @@ pub fn part_1() {
         },
         {
             let mut visited = HashSet::<String>::new();
-            let mut count: usize = 0;
+            let count: usize = 0;
             let deepest_bag = String::from("shiny gold");
             let mut queue: Vec<String> = Vec::new();
             queue.push(deepest_bag);

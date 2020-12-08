@@ -180,9 +180,6 @@ impl fmt::Display for Command {
             Op::JMP => {
                 write!(f, "JMP {}", self.val.to_string())
             }
-            _ => {
-                write!(f, "Invalid OP")
-            }
         }
     }
 }
